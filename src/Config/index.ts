@@ -4,9 +4,10 @@ export interface WorldLineConfigProps {
     apiKeyId: string;
     secretApiKey: string;
     integrator: string;
+    merchantId: string;
 }
 export class WorldLineConfig extends WorldLineUrl {
-    protected config: WorldLineConfigProps;
+    public config: WorldLineConfigProps;
 
     constructor(config: WorldLineConfigProps) {
         super(config);
