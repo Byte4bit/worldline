@@ -16,13 +16,13 @@
     "prettier:fix": "npm run prettier -- --write",
     "format": "npm run prettier:fix && npm run lint:fix",
     "flb": "npm run format && npm run lint && npm run build",
-    "bun-i":"bun i",
-    "remove-bun-lockb":"rm -r bun.lockb",
-    "remove-node-module":"rm -r node_modules",
-    "remove":"npm run remove-node-module && npm run remove-bun-lockb",
-    "update-package":"ncu -u !next",
-    "update":"npm run update-package && npm run remove && npm run bun-i && npm run flb",
-    "u":"npm run update"
+    "bun-i": "bun i",
+    "remove-bun-lockb": "rm -r bun.lockb",
+    "remove-node-module": "rm -r node_modules",
+    "remove": "npm run remove-node-module && npm run remove-bun-lockb",
+    "update-package": "ncu -u !next",
+    "update": "npm run update-package && npm run remove && npm run bun-i && npm run flb",
+    "u": "npm run update"
   },
   "repository": {
     "type": "git",
@@ -42,7 +42,7 @@
     "esm"
   ],
   "dependencies": {
-    "axios": "^1.5.1",
+    "connect-sdk-nodejs": "^4.15.0",
     "fenextjs-error": "^1.0.14",
     "fenextjs-validator": "^1.0.17"
   },

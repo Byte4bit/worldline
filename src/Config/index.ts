@@ -1,9 +1,9 @@
 import { WorldLineUrl } from "../Url";
 export interface WorldLineConfigProps {
     mode: "sandbox" | "production";
-    merchant_account_id: string;
-    email: string;
-    password: string;
+    apiKeyId: string;
+    secretApiKey: string;
+    integrator: string;
 }
 export class WorldLineConfig extends WorldLineUrl {
     protected config: WorldLineConfigProps;
