@@ -3,8 +3,8 @@ export interface WorldLineUrlConfig {
 }
 
 export class WorldLineUrl {
-    private url_sandbox = "https://sandbox-api.tilled.com";
-    private url_production = "https://api.tilled.com";
+    private url_sandbox = "https://world.preprod.api-ingenico.com";
+    private url_production = "https://world.api-ingenico.com";
     protected url = "";
 
     constructor(config: WorldLineUrlConfig) {
