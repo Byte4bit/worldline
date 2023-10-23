@@ -44,6 +44,7 @@
   "dependencies": {
     "connect-sdk-nodejs": "^4.15.0",
     "fenextjs-error": "^1.0.14",
+    "fenextjs-interface": "^1.0.35",
     "fenextjs-validator": "^1.0.17"
   },
   "devDependencies": {

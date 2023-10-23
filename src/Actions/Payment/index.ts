@@ -1,8 +1,10 @@
-import { SdkResponse, SdkResponseError } from "connect-sdk-nodejs/lib/model";
+import { SdkResponseError } from "connect-sdk-nodejs/lib/model";
 import { WorldLineBase } from "../../Base";
 import { WorldLinePaymentProps } from "./Interface";
 import { Validators } from "./Validator";
 import { ErrorFenextjs } from "fenextjs-error";
+import { ErrorCode } from "fenextjs-interface/cjs/Error";
+import { RequestResult } from "../../Request";
 
 export class WorldLinePayment {
     private worldline: WorldLineBase;
@@ -18,31 +20,35 @@ export class WorldLinePayment {
                 return valid;
             }
             try {
-                
-            const result = await  new Promise<
-            {
-                error:SdkResponseError | null,
-                response:SdkResponse| null
-            }
-            >((resolve) => {
-                this.worldline.sdk.payments.create(
-                    this.worldline.config.merchantId,
-                    data,
-                    null,
-                    (error, response) => {
-                        resolve({
-                            error,
-                            response
-                        });
-                    },
-                );
-            });
-            if(result.error){
-                throw result.error
-            }
-            return result.response
-            } catch (error) {
-                return new ErrorFenextjs({})
+                const result = await new Promise<RequestResult>((resolve) => {
+                    this.worldline.sdk.payments.create(
+                        this.worldline.config.merchantId,
+                        data,
+                        null,
+                        (error, response) => {
+                            resolve({
+                                error,
+                                response,
+                            });
+                        },
+                    );
+                });
+                if (result.error) {
+                    throw result.error;
+                }
+                if (!result.response) {
+                    return new ErrorFenextjs({
+                        code: ErrorCode.ERROR,
+                        message: "Response Null",
+                    });
+                }
+                return result.response;
+            } catch (e) {
+                const error = e as SdkResponseError;
+                return new ErrorFenextjs({
+                    message: error.message,
+                    data: error,
+                });
             }
         };
 }
