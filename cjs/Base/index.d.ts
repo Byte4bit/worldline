@@ -1,5 +1,5 @@
-import { WorldLineConnectSdk } from "../ConnectSdk";
-import { WorldLineConfigProps } from "../Config";
-export declare class WorldLineBase extends WorldLineConnectSdk {
-    constructor(config: WorldLineConfigProps);
+import { WorldlineAuth } from "../Auth";
+import { WorldlineConfigProps } from "../Config";
+export declare class WorldlineBase extends WorldlineAuth {
+    constructor(config: WorldlineConfigProps);
 }

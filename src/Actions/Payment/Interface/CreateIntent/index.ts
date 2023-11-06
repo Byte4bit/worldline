@@ -1,9 +1,12 @@
 import { RequestFuntionResult } from "../../../../Request";
-import { SdkResponse } from "connect-sdk-nodejs/lib/model";
-import { CreatePaymentRequest } from "connect-sdk-nodejs/lib/model/domain/payment";
+import { onCreateProps } from "./props";
+import { onCreateResult } from "./result";
+import { ErrorFenextjs } from "fenextjs-error/cjs/Fenextjs";
 
-export interface WorldLinePaymentCreateIntent {
-    props: CreatePaymentRequest;
-    result: SdkResponse;
-    function: (data: CreatePaymentRequest) => RequestFuntionResult;
+export interface WorldlinePaymentCreateIntent {
+    props: onCreateProps;
+    result: onCreateResult;
+    function: (
+        data: onCreateProps,
+    ) => RequestFuntionResult<onCreateResult> | ErrorFenextjs;
 }

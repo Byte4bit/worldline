@@ -1,23 +1,17 @@
-import { WorldLineBase } from "./Base";
-import { WorldLineConfigProps } from "./Config";
-import { WorldLinePayment } from "./Actions/Payment";
-// import { WorldLineCustomer } from "./Actions/Customer";
-// import { WorldLineSubscription } from "./Actions/Subscription";
-export class WorldLine extends WorldLineBase {
-    public payment: WorldLinePayment;
-    // public customer: WorldLineCustomer;
-    // public subscription: WorldLineSubscription;
+import { WorldlineBase } from "./Base";
+import { WorldlineConfigProps } from "./Config";
+import { WorldlinePayment } from "./Actions/Payment";
+export class Worldline extends WorldlineBase {
+    public payment: WorldlinePayment;
 
-    constructor(config: WorldLineConfigProps) {
+    constructor(config: WorldlineConfigProps) {
         super(config);
-        // this.customer = new WorldLineCustomer(this);
-        this.payment = new WorldLinePayment(this);
-        // this.subscription = new WorldLineSubscription(this);
+        this.payment = new WorldlinePayment(this);
     }
 }
 
-export const __WorldLine = (config: WorldLineConfigProps) => {
-    const c = new WorldLine(config);
+export const __Worldline = (config: WorldlineConfigProps) => {
+    const c = new Worldline(config);
     const { payment } = c;
     return { payment };
 };

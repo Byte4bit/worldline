@@ -1,11 +1,11 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.WorldLineBase = void 0;
-const ConnectSdk_1 = require("../ConnectSdk");
-class WorldLineBase extends ConnectSdk_1.WorldLineConnectSdk {
+exports.WorldlineBase = void 0;
+const Auth_1 = require("../Auth");
+class WorldlineBase extends Auth_1.WorldlineAuth {
     constructor(config) {
         super(config);
     }
 }
-exports.WorldLineBase = WorldLineBase;
+exports.WorldlineBase = WorldlineBase;
 //# sourceMappingURL=index.js.map

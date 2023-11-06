@@ -1,15 +1,14 @@
-import { WorldLineUrl } from "../Url";
-export interface WorldLineConfigProps {
+import { WorldlineUrl } from "../Url";
+export interface WorldlineConfigProps {
     mode: "sandbox" | "production";
-    apiKeyId: string;
-    secretApiKey: string;
-    integrator: string;
-    merchantId: string;
+    merchant_account_id: string;
+    email: string;
+    password: string;
 }
-export class WorldLineConfig extends WorldLineUrl {
-    public config: WorldLineConfigProps;
+export class WorldlineConfig extends WorldlineUrl {
+    protected config: WorldlineConfigProps;
 
-    constructor(config: WorldLineConfigProps) {
+    constructor(config: WorldlineConfigProps) {
         super(config);
         this.config = config;
     }

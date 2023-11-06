@@ -1,8 +1,10 @@
-import { WorldLineBase } from "./Base";
-import { WorldLineConfigProps } from "./Config";
-export declare class WorldLine extends WorldLineBase {
-    constructor(config: WorldLineConfigProps);
+import { WorldlineBase } from "./Base";
+import { WorldlineConfigProps } from "./Config";
+import { WorldlinePayment } from "./Actions/Payment";
+export declare class Worldline extends WorldlineBase {
+    payment: WorldlinePayment;
+    constructor(config: WorldlineConfigProps);
 }
-export declare const __WorldLine: (config: WorldLineConfigProps) => {
-    sdk: import("connect-sdk-nodejs/lib/model").ConnectSdk;
+export declare const __Worldline: (config: WorldlineConfigProps) => {
+    payment: WorldlinePayment;
 };

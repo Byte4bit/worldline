@@ -1,26 +1,20 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.__WorldLine = exports.WorldLine = void 0;
+exports.__Worldline = exports.Worldline = void 0;
 const Base_1 = require("./Base");
-// import { WorldLinePayment } from "./Actions/Payment";
-// import { WorldLineCustomer } from "./Actions/Customer";
-// import { WorldLineSubscription } from "./Actions/Subscription";
-class WorldLine extends Base_1.WorldLineBase {
-    // public payment: WorldLinePayment;
-    // public customer: WorldLineCustomer;
-    // public subscription: WorldLineSubscription;
+const Payment_1 = require("./Actions/Payment");
+class Worldline extends Base_1.WorldlineBase {
+    payment;
     constructor(config) {
         super(config);
-        // this.customer = new WorldLineCustomer(this);
-        // this.payment = new WorldLinePayment(this);
-        // this.subscription = new WorldLineSubscription(this);
+        this.payment = new Payment_1.WorldlinePayment(this);
     }
 }
-exports.WorldLine = WorldLine;
-const __WorldLine = (config) => {
-    const c = new WorldLine(config);
-    const { sdk } = c;
-    return { sdk };
+exports.Worldline = Worldline;
+const __Worldline = (config) => {
+    const c = new Worldline(config);
+    const { payment } = c;
+    return { payment };
 };
-exports.__WorldLine = __WorldLine;
+exports.__Worldline = __Worldline;
 //# sourceMappingURL=index.js.map

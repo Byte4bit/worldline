@@ -1,54 +1,79 @@
-import { SdkResponseError } from "connect-sdk-nodejs/lib/model";
-import { WorldLineBase } from "../../Base";
-import { WorldLinePaymentProps } from "./Interface";
+import { WorldlineBase } from "../../Base";
+import { WorldlinePaymentProps } from "./Interface";
 import { Validators } from "./Validator";
-import { ErrorFenextjs } from "fenextjs-error";
-import { ErrorCode } from "fenextjs-interface/cjs/Error";
-import { RequestResult } from "../../Request";
 
-export class WorldLinePayment {
-    private worldline: WorldLineBase;
-    constructor(worldline: WorldLineBase) {
+export class WorldlinePayment {
+    private worldline: WorldlineBase;
+    constructor(worldline: WorldlineBase) {
         this.worldline = worldline;
     }
 
-    public onCreatePaymentIntent: WorldLinePaymentProps["onCreateIntent"]["function"] =
-        async (data: WorldLinePaymentProps["onCreateIntent"]["props"]) => {
+    public onCreatePaymentMethod: WorldlinePaymentProps["onCreateMethod"]["function"] =
+        async (data: WorldlinePaymentProps["onCreateMethod"]["props"]) => {
+            const valid =
+                Validators.ValidatorPaymentCreateMethod.onValidate(data);
+            if (valid !== true) {
+                return valid;
+            }
+            const url = "/v1/payment-methods";
+            return await this.worldline.onRequest<
+                WorldlinePaymentProps["onCreateMethod"]["props"],
+                WorldlinePaymentProps["onCreateMethod"]["result"]
+            >(
+                {
+                    url,
+                    data,
+                    method: "post",
+                },
+                {
+                    validateToken: true,
+                },
+            );
+        };
+
+    public onCreatePaymentIntent: WorldlinePaymentProps["onCreateIntent"]["function"] =
+        async (data: WorldlinePaymentProps["onCreateIntent"]["props"]) => {
             const valid =
                 Validators.ValidatorPaymentCreateIntent.onValidate(data);
             if (valid !== true) {
                 return valid;
             }
-            try {
-                const result = await new Promise<RequestResult>((resolve) => {
-                    this.worldline.sdk.payments.create(
-                        this.worldline.config.merchantId,
-                        data,
-                        null,
-                        (error, response) => {
-                            resolve({
-                                error,
-                                response,
-                            });
-                        },
-                    );
-                });
-                if (result.error) {
-                    throw result.error;
-                }
-                if (!result.response) {
-                    return new ErrorFenextjs({
-                        code: ErrorCode.ERROR,
-                        message: "Response Null",
-                    });
-                }
-                return result.response;
-            } catch (e) {
-                const error = e as SdkResponseError;
-                return new ErrorFenextjs({
-                    message: error.message,
-                    data: error,
-                });
+            const url = "/v1/payment-intents";
+            return await this.worldline.onRequest<
+                WorldlinePaymentProps["onCreateIntent"]["props"],
+                WorldlinePaymentProps["onCreateIntent"]["result"]
+            >(
+                {
+                    url,
+                    data,
+                    method: "post",
+                },
+                {
+                    validateToken: true,
+                },
+            );
+        };
+
+    public onAttachCustomerPaymentMethod: WorldlinePaymentProps["onAttachCustomer"]["function"] =
+        async (data: WorldlinePaymentProps["onAttachCustomer"]["props"]) => {
+            const valid =
+                Validators.ValidatorPaymentAttachCustomer.onValidate(data);
+            if (valid !== true) {
+                return valid;
             }
+            const url = `/v1/payment-methods/${data.id}/attach`;
+            return await this.worldline.onRequest<
+                WorldlinePaymentProps["onAttachCustomer"]["props"],
+                WorldlinePaymentProps["onAttachCustomer"]["result"]
+            >(
+                {
+                    url,
+                    data,
+                    method: "put",
+                },
+                {
+                    validateToken: true,
+                },
+            );
         };
 }
