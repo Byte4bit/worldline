@@ -3,8 +3,8 @@ export interface WorldlineUrlConfig {
 }
 
 export class WorldlineUrl {
-    private url_sandbox = "https://sandbox-api.worldline.com";
-    private url_production = "https://api.worldline.com";
+    private url_sandbox = "https://api.na.bambora.com/v1";
+    private url_production = "https://api.na.bambora.com/v1";
     protected url = "";
 
     constructor(config: WorldlineUrlConfig) {

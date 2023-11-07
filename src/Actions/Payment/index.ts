@@ -15,7 +15,7 @@ export class WorldlinePayment {
             if (valid !== true) {
                 return valid;
             }
-            const url = "/v1/payment-intents";
+            const url = "/payments";
             return await this.worldline.onRequest<
                 WorldlinePaymentProps["onCreateMethod"]["props"],
                 WorldlinePaymentProps["onCreateMethod"]["result"]
@@ -38,7 +38,7 @@ export class WorldlinePayment {
             if (valid !== true) {
                 return valid;
             }
-            const url = "/v1/payment-intents";
+            const url = "/payments";
             return await this.worldline.onRequest<
                 WorldlinePaymentProps["onCreateIntent"]["props"],
                 WorldlinePaymentProps["onCreateIntent"]["result"]
