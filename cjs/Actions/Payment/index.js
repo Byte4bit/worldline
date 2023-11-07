@@ -7,20 +7,6 @@ class WorldlinePayment {
     constructor(worldline) {
         this.worldline = worldline;
     }
-    onCreatePaymentMethod = async (data) => {
-        const valid = Validator_1.Validators.ValidatorPaymentCreateMethod.onValidate(data);
-        if (valid !== true) {
-            return valid;
-        }
-        const url = "/v1/payment-methods";
-        return await this.worldline.onRequest({
-            url,
-            data,
-            method: "post",
-        }, {
-            validateToken: true,
-        });
-    };
     onCreatePaymentIntent = async (data) => {
         const valid = Validator_1.Validators.ValidatorPaymentCreateIntent.onValidate(data);
         if (valid !== true) {
@@ -31,20 +17,6 @@ class WorldlinePayment {
             url,
             data,
             method: "post",
-        }, {
-            validateToken: true,
-        });
-    };
-    onAttachCustomerPaymentMethod = async (data) => {
-        const valid = Validator_1.Validators.ValidatorPaymentAttachCustomer.onValidate(data);
-        if (valid !== true) {
-            return valid;
-        }
-        const url = `/v1/payment-methods/${data.id}/attach`;
-        return await this.worldline.onRequest({
-            url,
-            data,
-            method: "put",
         }, {
             validateToken: true,
         });

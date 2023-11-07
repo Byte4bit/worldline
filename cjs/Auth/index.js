@@ -6,21 +6,8 @@ class WorldlineAuth extends Request_1.WorldlineRequest {
     constructor(config) {
         super(config);
     }
-    onLogin = async (data) => {
-        const url = "/v1/auth/login";
-        const result = await this.onRequest({
-            url,
-            method: "post",
-            data: {
-                email: data.email,
-                password: data.password,
-            },
-        });
-        return result;
-    };
     onLoadToken = async () => {
-        const result = await this.onLogin(this.config);
-        this.token = result?.data?.token;
+        this.token = btoa(this.config.merchant_account_id + ":" + this.config.passcode);
     };
     onRequest = async (config, options) => {
         if (options?.validateToken) {
@@ -34,7 +21,7 @@ class WorldlineAuth extends Request_1.WorldlineRequest {
                 ["worldline-account"]: this.config.merchant_account_id,
                 ...(this.token
                     ? {
-                        ["Authorization"]: `Bearer ${this.token}`,
+                        ["Authorization"]: `Passcode ${this.token}`,
                     }
                     : {}),
             },

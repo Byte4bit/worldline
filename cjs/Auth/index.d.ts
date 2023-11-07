@@ -5,7 +5,6 @@ export interface WorldlineAuthRequestProps {
 }
 export declare class WorldlineAuth extends WorldlineRequest {
     constructor(config: WorldlineConfigProps);
-    private onLogin;
     private onLoadToken;
     onRequest: <D = any, R = any>(config: RequestFuntionConfig<D>, options?: WorldlineAuthRequestProps) => RequestFuntionResult<R>;
 }
