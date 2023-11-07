@@ -1,4 +1,3 @@
-import { WorldlineAuthProps } from "./Interface";
 import { WorldlineConfigProps } from "../Config";
 import {
     Request,
@@ -15,26 +14,10 @@ export class WorldlineAuth extends WorldlineRequest {
     constructor(config: WorldlineConfigProps) {
         super(config);
     }
-    private onLogin: WorldlineAuthProps["onLogin"]["function"] = async (
-        data: WorldlineAuthProps["onLogin"]["props"],
-    ) => {
-        const url = "/v1/auth/login";
-        const result = await this.onRequest<
-            WorldlineAuthProps["onLogin"]["props"],
-            WorldlineAuthProps["onLogin"]["result"]
-        >({
-            url,
-            method: "post",
-            data: {
-                email: data.email,
-                password: data.password,
-            },
-        });
-        return result;
-    };
     private onLoadToken = async () => {
-        const result = await this.onLogin(this.config);
-        this.token = result?.data?.token;
+        this.token = btoa(
+            this.config.merchant_account_id + ":" + this.config.passcode,
+        );
     };
     public onRequest = async <D = any, R = any>(
         config: RequestFuntionConfig<D>,
@@ -51,7 +34,7 @@ export class WorldlineAuth extends WorldlineRequest {
                 ["worldline-account"]: this.config.merchant_account_id,
                 ...(this.token
                     ? {
-                          ["Authorization"]: `Bearer ${this.token}`,
+                          ["Authorization"]: `Passcode ${this.token}`,
                       }
                     : {}),
             },
