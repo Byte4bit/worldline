@@ -8,6 +8,29 @@ export class WorldlinePayment {
         this.worldline = worldline;
     }
 
+    public onCreatePaymentMethod: WorldlinePaymentProps["onCreateMethod"]["function"] =
+        async (data: WorldlinePaymentProps["onCreateMethod"]["props"]) => {
+            const valid =
+                Validators.ValidatorPaymentCreateMethod.onValidate(data);
+            if (valid !== true) {
+                return valid;
+            }
+            const url = "/v1/payment-intents";
+            return await this.worldline.onRequest<
+                WorldlinePaymentProps["onCreateMethod"]["props"],
+                WorldlinePaymentProps["onCreateMethod"]["result"]
+            >(
+                {
+                    url,
+                    data,
+                    method: "post",
+                },
+                {
+                    validateToken: true,
+                },
+            );
+        };
+
     public onCreatePaymentIntent: WorldlinePaymentProps["onCreateIntent"]["function"] =
         async (data: WorldlinePaymentProps["onCreateIntent"]["props"]) => {
             const valid =

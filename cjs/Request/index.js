@@ -14,7 +14,7 @@ const Request = async (config) => {
     }
     catch (error) {
         return new fenextjs_error_1.ErrorFenextjs({
-            data: error?.response?.data ?? error,
+            data: error?.response?.data ?? error?.data ?? error,
             message: `${error?.response?.data?.message ??
                 error?.response?.message ??
                 error?.message ??

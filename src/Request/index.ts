@@ -22,7 +22,7 @@ export const Request = async <D = any, R = any>(
         return response;
     } catch (error: any) {
         return new ErrorFenextjs({
-            data: error?.response?.data ?? error,
+            data: error?.response?.data ?? error?.data ?? error,
             message: `${
                 error?.response?.data?.message ??
                 error?.response?.message ??
