@@ -8,8 +8,8 @@ export type onPaymentMethodCreateProps = {
     card: {
         name: string;
         number: string;
-        expiry_month: string;
-        expiry_year: string;
+        expiry_month: number;
+        expiry_year: number;
         cvd: string;
     };
     billing: {
