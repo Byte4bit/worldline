@@ -19,10 +19,9 @@ export type onPaymentIntentCreateProps = {
         expiry_year: number;
         cvd: string;
     };
-}
+};
 
 export type onPaymentIntentCreateSendProps = {
-
     amount: number;
 
     payment_method: "payment_profile" | "card";

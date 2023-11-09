@@ -3,18 +3,32 @@ import { ResultApi } from "../../../interface/Result";
 export type onPaymentIntentCreateProps = {
     token: string;
     amount: number;
-    payment_profile: {
+    payment_method: "payment_profile" | "card";
+    payment_profile?: {
         complete?: boolean;
         customer_code: string;
-        card_id: number;
+    };
+    card?: {
+        number: string;
+        name: string;
+        expiry_month: number;
+        expiry_year: number;
+        cvd: string;
     };
 };
 export type onPaymentIntentCreateSendProps = {
     amount: number;
-    payment_profile: {
+    payment_method: "payment_profile" | "card";
+    payment_profile?: {
         complete?: boolean;
         customer_code: string;
-        card_id: number;
+    };
+    card?: {
+        number: string;
+        name: string;
+        expiry_month: string;
+        expiry_year: string;
+        cvd: string;
     };
 };
 export type onPaymentIntentCreateFunctionParseProps = (data: onPaymentIntentCreateProps) => onPaymentIntentCreateSendProps;

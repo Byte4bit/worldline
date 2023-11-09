@@ -11,8 +11,16 @@ exports.onPaymentMethodCreateValidator = (0, fenextjs_validator_1.FenextjsValida
         .isObject({
         name: (0, fenextjs_validator_1.FenextjsValidator)().isString().isRequired(),
         number: (0, fenextjs_validator_1.FenextjsValidator)().isString().isRequired(),
-        expiry_month: (0, fenextjs_validator_1.FenextjsValidator)().isString().isRequired(),
-        expiry_year: (0, fenextjs_validator_1.FenextjsValidator)().isString().isRequired(),
+        expiry_month: (0, fenextjs_validator_1.FenextjsValidator)()
+            .isNumber()
+            .isRequired()
+            .isMinOrEqual(1)
+            .isMaxOrEqual(12),
+        expiry_year: (0, fenextjs_validator_1.FenextjsValidator)()
+            .isNumber()
+            .isRequired()
+            .isMinOrEqual(new Date().getFullYear() % 100)
+            .isMaxOrEqual(99),
         cvd: (0, fenextjs_validator_1.FenextjsValidator)().isString().isRequired(),
     })
         .isRequired(),
