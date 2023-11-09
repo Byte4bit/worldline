@@ -43,22 +43,24 @@
     "esm"
   ],
   "dependencies": {
-    "connect-sdk-nodejs": "^4.15.0",
+    "axios": "^1.6.1",
+    "connect-sdk-nodejs": "^4.16.0",
     "fenextjs-error": "^1.0.14",
-    "fenextjs-interface": "^1.0.35",
-    "fenextjs-validator": "^1.0.17"
+    "fenextjs-interface": "^1.0.36",
+    "fenextjs-validator": "^1.0.19"
   },
   "devDependencies": {
-    "@types/node": "20.7.0",
-    "@types/react": "18.2.23",
-    "@types/react-dom": "18.2.8",
-    "@typescript-eslint/eslint-plugin": "^6.7.3",
-    "@typescript-eslint/parser": "^6.7.3",
-    "eslint": "8.50.0",
+    "@types/node": "20.9.0",
+    "@types/react": "18.2.37",
+    "@types/react-dom": "18.2.15",
+    "@typescript-eslint/eslint-plugin": "^6.10.0",
+    "@typescript-eslint/parser": "^6.10.0",
+    "eslint": "8.53.0",
     "prettier": "^3.0.3",
-    "ts-loader": "^9.4.4",
+    "ts-loader": "^9.5.0",
     "ts-node": "^10.9.1",
     "tslib": "^2.6.2",
-    "typescript": "^5.2.2"
+    "typescript": "^5.2.2",
+    "npm-check-updates": "^16.14.6"
   }
 }
