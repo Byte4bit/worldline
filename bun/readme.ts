@@ -1,6 +1,7 @@
 import { root } from '../index';
 
 const PAYMENT_METHOD_CREATE = root + '/src/api/PaymentMethod/Create/readme.md';
+const PAYMENT_INTENT_CREATE = root + '/src/api/PaymentIntent/Create/readme.md';
 
 
 const READMEBASE = root + '/src/readme.md';
@@ -21,6 +22,7 @@ const CopyStyles = async () => {
     const LIST = await Promise.all([
         READMEBASE_FILE.text(),
         getReadme(PAYMENT_METHOD_CREATE, 'onPaymentMethodCreate'),
+        getReadme(PAYMENT_INTENT_CREATE, 'onPaymentIntentCreate'),
     ]);
 
     const output = Bun_.file(README); // doesn't exist yet!
