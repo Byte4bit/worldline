@@ -15,7 +15,7 @@ export class WorldlinePayment {
             if (valid !== true) {
                 return valid;
             }
-            const url = "/payments";
+            const url = "/profiles";
             return await this.worldline.onRequest<
                 WorldlinePaymentProps["onCreateMethod"]["props"],
                 WorldlinePaymentProps["onCreateMethod"]["result"]

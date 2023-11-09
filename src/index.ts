@@ -1,17 +1,26 @@
-import { WorldlineBase } from "./Base";
-import { WorldlineConfigProps } from "./Config";
-import { WorldlinePayment } from "./Actions/Payment";
-export class Worldline extends WorldlineBase {
-    public payment: WorldlinePayment;
+import { onPaymentMethodCreate } from "./api/PaymentMethod";
+import { onPaymentMethodCreateProps } from "./api/PaymentMethod/Create/interface";
 
-    constructor(config: WorldlineConfigProps) {
-        super(config);
-        this.payment = new WorldlinePayment(this);
+interface WorldlineProps {
+    merchant_account_id: string;
+    passcode: string;
+}
+class Worldline {
+    private token: string;
+
+    constructor(data: WorldlineProps) {
+        this.token = btoa(data.merchant_account_id + ":" + data.passcode);
+    }
+
+    public async onPaymentMethodCreate(
+        data: Omit<onPaymentMethodCreateProps, "token">,
+    ) {
+        return await onPaymentMethodCreate({
+            token: this.token,
+            ...data,
+        });
     }
 }
 
-export const __Worldline = (config: WorldlineConfigProps) => {
-    const c = new Worldline(config);
-    const { payment } = c;
-    return { payment };
-};
+export const WL: (data: WorldlineProps) => Worldline = (data) =>
+    new Worldline(data);
