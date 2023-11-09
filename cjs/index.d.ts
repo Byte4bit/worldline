@@ -1,10 +1,12 @@
-import { WorldlineBase } from "./Base";
-import { WorldlineConfigProps } from "./Config";
-import { WorldlinePayment } from "./Actions/Payment";
-export declare class Worldline extends WorldlineBase {
-    payment: WorldlinePayment;
-    constructor(config: WorldlineConfigProps);
+import { onPaymentMethodCreateProps } from "./api/PaymentMethod/Create/interface";
+interface WorldlineProps {
+    merchant_account_id: string;
+    passcode: string;
 }
-export declare const __Worldline: (config: WorldlineConfigProps) => {
-    payment: WorldlinePayment;
-};
+declare class Worldline {
+    private token;
+    constructor(data: WorldlineProps);
+    onPaymentMethodCreate(data: Omit<onPaymentMethodCreateProps, "token">): Promise<import("./api/PaymentMethod/Create/interface").onPaymentMethodCreateResult | import("fenextjs-error").ErrorFenextjs<any>>;
+}
+export declare const WL: (data: WorldlineProps) => Worldline;
+export {};

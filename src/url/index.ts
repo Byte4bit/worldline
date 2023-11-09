@@ -1,1 +1,1 @@
-export const URL = 'https://api.na.bambora.com/v1'
+export const URL = "https://api.na.bambora.com/v1";

@@ -1,3 +1,3 @@
 # Worldline Payment
 
-Lib for conect and worldline
+Lib for connect and worldline

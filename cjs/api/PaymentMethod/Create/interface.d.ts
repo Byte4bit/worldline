@@ -1,9 +1,7 @@
 import { ErrorFenextjs } from "fenextjs-error";
 import { ResultApi } from "../../../interface/Result";
-
 export type onPaymentMethodCreateProps = {
     token: string;
-
     customer_code: string;
     card: {
         name: string;
@@ -23,7 +21,6 @@ export type onPaymentMethodCreateProps = {
         postal_code: string;
     };
 };
-
 export type onPaymentMethodCreateSendProps = {
     customer_code: string;
     card: {
@@ -44,19 +41,9 @@ export type onPaymentMethodCreateSendProps = {
         postal_code: string;
     };
 };
-
-export type onPaymentMethodCreateFunctionParseProps = (
-    data: onPaymentMethodCreateProps,
-) => onPaymentMethodCreateSendProps;
-
+export type onPaymentMethodCreateFunctionParseProps = (data: onPaymentMethodCreateProps) => onPaymentMethodCreateSendProps;
 export type onPaymentMethodCreateResult = ResultApi & {
     customer_code: string;
 };
-
-export type onPaymentMethodCreateFunctionResult = Promise<
-    onPaymentMethodCreateResult | ErrorFenextjs
->;
-
-export type onPaymentMethodCreateFunction = (
-    data: onPaymentMethodCreateProps,
-) => onPaymentMethodCreateFunctionResult;
+export type onPaymentMethodCreateFunctionResult = Promise<onPaymentMethodCreateResult | ErrorFenextjs>;
+export type onPaymentMethodCreateFunction = (data: onPaymentMethodCreateProps) => onPaymentMethodCreateFunctionResult;

@@ -1,9 +1,9 @@
-import { onPaymentMethodCreateFunctionParseProps } from './interface';
+import { onPaymentMethodCreateFunctionParseProps } from "./interface";
 
-export const onPaymentMethodCreateParseProps: onPaymentMethodCreateFunctionParseProps = (
-    data,
-) => {
-    return {
-        ...data,
+export const onPaymentMethodCreateParseProps: onPaymentMethodCreateFunctionParseProps =
+    ({ token, ...data }) => {
+        token;
+        return {
+            ...data,
+        };
     };
-};

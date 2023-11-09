@@ -1,6 +1,6 @@
 # Worldline Payment
 
-Lib for conect and worldline
+Lib for connect and worldline
 
 <details><summary>onPaymentMethodCreate</summary>
 It is the function for create payment method

@@ -1,17 +1,19 @@
-import { onRequest } from '../../Request';
-import { URL } from '../../../url';
-import { onPaymentMethodCreateFunction } from './interface';
-import { onPaymentMethodCreateValidatorProps } from './validator';
-import { onPaymentMethodCreateParseProps } from './parse';
+import { onRequest } from "../../Request";
+import { URL } from "../../../url";
+import { onPaymentMethodCreateFunction } from "./interface";
+import { onPaymentMethodCreateValidatorProps } from "./validator";
+import { onPaymentMethodCreateParseProps } from "./parse";
 
-export const onPaymentMethodCreate: onPaymentMethodCreateFunction = async (data) => {
+export const onPaymentMethodCreate: onPaymentMethodCreateFunction = async (
+    data,
+) => {
     const validate = onPaymentMethodCreateValidatorProps(data);
     if (validate !== true) {
         return validate;
     }
     const result = await onRequest({
         url: URL + `/profiles`,
-        method: 'post',
+        method: "post",
         headers: {
             Authorization: `Passcode ${data.token}`,
         },
