@@ -6,7 +6,8 @@
   "module": "./cjs/index.js",
   "types": "./cjs/index.d.ts",
   "scripts": {
-    "test": "bun run test.ts",
+    "readme": "bun run ./bun/readme.ts",
+    "test": "bun run ./bun/test.ts",
     "build": "npm run build:esm && npm run build:cjs",
     "build:esm": "echo 'esm'",
     "build:cjs": "tsc --module commonjs --outDir cjs",

@@ -1,4 +1,4 @@
-It is the function for create agent in aveonline for xell
+It is the function for create payment method
 
 #### Use
 
@@ -6,28 +6,41 @@ Example onPaymentMethodCreateProps
 
 ```ts
 const data: onPaymentMethodCreateProps = {
-    token: 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzZXNzaW9uIjo1MDEyNjgyMSwiZXhwIjoxNjk4OTgyNjMyLCJhcHJvYmFkb3MiOlszMjY1OV19.eICy47QVZWbxYyHOR1msXYIqQyTg6iN2Hr_KXvsmMH0',
-    companyId: 1,
+    token: "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9",
 
-    agentName: 'demo-xell',
-    contact: 'demo-xell',
-    phone: 0,
-    email: 'demo-xell@yopmail.com',
-    city: 'MEDELLIN(ANTIOQUIA)',
-    address: 'string',
+    customer_code: "TestCustomerCode123q4562",
+    card: {
+        name: "asdf2",
+        number: "4030000010001234",
+        expiry_month: "02",
+        expiry_year: "24",
+        cvd: "123",
+    },
+    billing: {
+        name: "asdf2",
+        address_line1: "2659 Douglas St",
+        address_line2: "",
+        city: "victoria",
+        email_address: "asdf@asdf.com",
+        province: "bc",
+        country: "ca",
+        postal_code: "V8T 4M3",
+    },
 };
 ```
 
 ```ts
-const result: onPaymentMethodCreateResult | ErrorFenextjs = await ave.agent.onPaymentMethodCreate(data);
+const result: onPaymentMethodCreateResult | ErrorFenextjs =
+    await wl.onPaymentMethodCreate(data);
 ```
 
 Example onPaymentMethodCreateResult
 
 ```ts
 {
-  success: true,
-  message: "PaymentMethode creado con éxito"
+    "code": 1,
+    "message": "Operation Successful",
+    "customer_code": "TestCustomerCode123q4562"
 }
 ```
 
