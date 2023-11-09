@@ -67,11 +67,11 @@ const data: onPaymentIntentCreateProps = {
 
         amount:100,
         payment_method:'payment_profile',
-        //id  payment_method == payment_profile
+        //if  payment_method == payment_profile
         payment_profile:{
             customer_code:"TestCustomerCode123451226",
         }
-        //id  payment_method == card
+        //if  payment_method == card
         card:{
             name: "asdf2",
             number: "4030000010001234",
