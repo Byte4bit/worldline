@@ -11,14 +11,12 @@ Example onPaymentMethodCreateProps
 
 ```ts
 const data: onPaymentMethodCreateProps = {
-    token: "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9",
-
-    customer_code: "TestCustomerCode123q4562",
+    customer_code: "TestCustomerCode123451226",
     card: {
         name: "asdf2",
         number: "4030000010001234",
-        expiry_month: "02",
-        expiry_year: "24",
+        expiry_month: 2,
+        expiry_year: 24,
         cvd: "123",
     },
     billing: {
